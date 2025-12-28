@@ -13,8 +13,6 @@ function FleetCardBase({ fleet, onUpdateDriver, onToggleAvailability, onDelete }
     const name = prompt("Enter new driver name:");
     if (name && name.trim()) {
       onUpdateDriver(fleet.id, name.trim());
-    } else {
-      // Optional alert: alert("Invalid driver name");
     }
   }
 
