@@ -1,9 +1,7 @@
 import { useState } from "react";
 import type { Fleet } from "../types/fleet";
 
-type Props = {
-  onAddFleet: (fleet: Fleet) => void;
-};
+type Props = { onAddFleet: (fleet: Fleet) => void };
 
 export default function Sidebar({ onAddFleet }: Props) {
   const [regNo, setRegNo] = useState("");
@@ -13,12 +11,10 @@ export default function Sidebar({ onAddFleet }: Props) {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
     if (!regNo.trim() || !driverName.trim()) {
       alert("Vehicle Registration Number and Driver Name are required.");
       return;
     }
-
     const newFleet: Fleet = {
       id: crypto.randomUUID(),
       regNo: regNo.trim(),
@@ -26,9 +22,7 @@ export default function Sidebar({ onAddFleet }: Props) {
       driverName: driverName.trim(),
       available,
     };
-
     onAddFleet(newFleet);
-
     // Clear form
     setRegNo("");
     setCategory("Auto");
@@ -44,7 +38,6 @@ export default function Sidebar({ onAddFleet }: Props) {
           <label>Vehicle Registration Number</label><br />
           <input value={regNo} onChange={(e) => setRegNo(e.target.value)} />
         </div>
-
         <div style={{ marginTop: 10 }}>
           <label>Category</label><br />
           <select value={category} onChange={(e) => setCategory(e.target.value as Fleet["category"])}>
@@ -54,12 +47,10 @@ export default function Sidebar({ onAddFleet }: Props) {
             <option>Bus</option>
           </select>
         </div>
-
         <div style={{ marginTop: 10 }}>
           <label>Driver Name</label><br />
           <input value={driverName} onChange={(e) => setDriverName(e.target.value)} />
         </div>
-
         <div style={{ marginTop: 10 }}>
           <label>Availability Status</label><br />
           <select value={available ? "Available" : "Unavailable"} onChange={(e) => setAvailable(e.target.value === "Available")}>
@@ -67,9 +58,9 @@ export default function Sidebar({ onAddFleet }: Props) {
             <option>Unavailable</option>
           </select>
         </div>
-
         <button type="submit" style={{ marginTop: 12 }}>Add Fleet</button>
       </form>
     </aside>
   );
 }
+
