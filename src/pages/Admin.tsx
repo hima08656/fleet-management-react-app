@@ -4,9 +4,7 @@ import Sidebar from "../components/Sidebar";
 import FleetCard from "../components/FleetCard";
 import type { Fleet } from "../types/fleet";
 
-type Props = {
-  logout: () => void;
-};
+type Props = { logout: () => void };
 
 export default function Admin({ logout }: Props) {
   const [fleets, setFleets] = useState<Fleet[]>([]);
@@ -40,13 +38,11 @@ export default function Admin({ logout }: Props) {
         <Sidebar onAddFleet={handleAddFleet} />
         <main style={{ flex: 1, padding: 16 }}>
           <h3>Fleet List</h3>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-              gap: 12
-            }}
-          >
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+            gap: 12
+          }}>
             {fleets.map((fleet) => (
               <FleetCard
                 key={fleet.id}
@@ -62,3 +58,4 @@ export default function Admin({ logout }: Props) {
     </div>
   );
 }
+
