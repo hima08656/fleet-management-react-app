@@ -1,35 +1,19 @@
-import { useMemo } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useAuth } from "./hooks/useAuth";
-import ProtectedRoute from "./components/ProtectedRoute";
-import Login from "./pages/Login";
-import Admin from "./pages/Admin";
+import Dashboard from "./pages/Dashboard";
+import Vehicles from "./pages/Vehicles";
+import Drivers from "./pages/Drivers";
 
-export default function App() {
-  const { auth, login, logout } = useAuth();
-  const isAuthenticated = auth.isAuthenticated;
-
-  const authProps = useMemo(
-    () => ({ isAuthenticated, login, logout }),
-    [isAuthenticated, login, logout]
-  );
-
+function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login {...authProps} />} />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Admin {...authProps} />
-            </ProtectedRoute>
-          }
-        />
-        {/* Optional: redirect root to /login */}
-        <Route path="/" element={<Login {...authProps} />} />
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/vehicles" element={<Vehicles />} />
+        <Route path="/drivers" element={<Drivers />} />
       </Routes>
     </BrowserRouter>
   );
 }
+
+export default App;
 
